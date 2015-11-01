@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Note from './Note.jsx';
+import Notes from './Notes.jsx';
 
 var items = [
     {
@@ -17,23 +17,20 @@ var items = [
     {
         id: 4,
         text: 'Add CSS preprocessor'
+    },
+    {
+        id: 5,
+        text: 'Learn some new tricks!'
     }
 ];
 
 export default class App extends Component {
     render() {
-        let notes = items.map(function(item) {
-            return(
-                <li key={`note${item.id}`}>
-                    <Note task={item.text} />
-                </li>
-            );
-        });
-
         return (
-            <div>
-                <ul>{ notes }</ul>
+            <div className="content">
+                <Notes items={ items } />
             </div>
         );
     }
+
 }
