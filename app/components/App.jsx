@@ -25,12 +25,27 @@ var items = [
 ];
 
 export default class App extends Component {
+    constructor( props ){
+        super( props );
+
+        this.state = {
+            notes: items
+        };
+    }
+
     render() {
+        const notes = this.state.notes;
+
         return (
             <div className="content">
+                <button className="add-note" onClick={ this.addNote }>+ Add New</button>
                 <Notes items={ items } />
             </div>
         );
+    }
+
+    addNote() {
+        alert( 'remind me to do something!' );
     }
 
 }
