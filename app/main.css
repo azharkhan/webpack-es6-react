@@ -1,5 +1,5 @@
 body {
-    background: cornsilk;
+    background: aliceblue;
     margin: 0;
     padding: 0;
     font-size: 16px;
@@ -24,6 +24,17 @@ body {
     opacity: 0.6;
     cursor: pointer;
 }
+.animate {
+    animation: blinker 1s linear infinite;
+}
+input[type="text"] {
+    border: none;
+    border-radius: 0.3em;
+    display: block;
+    margin: 1em 0;
+    padding: 0.75em;
+}
+
 .add-note {
     padding: 0.75em;
     font-size: 0.75em;
@@ -38,4 +49,8 @@ body {
 .add-note:hover {
     transform: scale(1.1);
     background-color: gray;
+}
+
+@keyframes blinker {  
+  50% { opacity: 0.0; }
 }

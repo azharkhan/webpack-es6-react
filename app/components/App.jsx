@@ -16,11 +16,8 @@ var items = [
     },
     {
         id: 4,
-        text: 'Add CSS preprocessor'
-    },
-    {
-        id: 5,
-        text: 'Learn some new tricks!'
+        text: 'Add CSS preprocessor',
+        decoration: true
     }
 ];
 
@@ -28,24 +25,48 @@ export default class App extends Component {
     constructor( props ){
         super( props );
 
+        this.addNote = this.addNote.bind( this );
+        this.saveOnEnter = this.saveOnEnter.bind( this );
+
         this.state = {
-            notes: items
+            notes: items,
+            addNote: false
         };
     }
 
     render() {
         const notes = this.state.notes;
+        var buttonText = this.state.addNote ? 'Save Notes' : '+ Add New';
 
         return (
             <div className="content">
-                <button className="add-note" onClick={ this.addNote }>+ Add New</button>
+                <button className="add-note" onClick={ this.addNote }>{ buttonText }</button>
+                { this.state.addNote ? <input type="text" placeholder="Press Enter to Save..." onKeyPress={ this.saveOnEnter } /> : null }
                 <Notes items={ items } />
             </div>
         );
     }
 
+    saveOnEnter( event ) {
+        var notesList;
+
+        if (event.key === "Enter" ) {
+
+            notesList = this.state.notes;
+            notesList.push({ id: this.state.notes.length + 1, text: event.target.value });
+
+            this.setState({
+                notes: notesList,
+                addNote: this.state.addNote
+            });
+
+            event.target.value = '';
+
+        }
+    }
+
     addNote() {
-        alert( 'remind me to do something!' );
+        this.setState({ addNote: !this.state.addNote });
     }
 
 }

@@ -9,8 +9,9 @@ export default class Notes extends Component {
     }
 
     renderNote( note ) {
+        var className = note.decoration ? "note animate" : "note";
         return (
-            <li className="note" key={`note${note.id}`}>
+            <li className={ className } key={`note${note.id}`}>
                 <Note task={note.text} />
             </li>
         );
